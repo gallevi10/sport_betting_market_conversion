@@ -1,7 +1,7 @@
 # Sport Betting Market Conversion
 
 ## 📄 Overview
-It implements a converter that takes sports betting markets in JSON format and outputs them
+This project implements a converter that takes sports betting markets in JSON format and outputs them
 in the required to be standardized format.
 
 ---
