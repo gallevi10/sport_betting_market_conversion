@@ -9,6 +9,7 @@ import com.project.converter.util.UidBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
+// This class maps "1X2" markets from input to output format
 public class OneXTwoMapper implements MarketMapper{
 
     @Override
@@ -18,7 +19,7 @@ public class OneXTwoMapper implements MarketMapper{
         outMarket.setSpecifiers(Specifiers.empty());
 
         String marketUid = UidBuilder.buildMarketUid(
-            inMarket.getEventId(), MarketType.ONE_X_TWO.id, ""
+            inMarket.getEventId().trim(), MarketType.ONE_X_TWO.id, ""
         );
         outMarket.setMarketUid(marketUid);
 
@@ -33,7 +34,9 @@ public class OneXTwoMapper implements MarketMapper{
         return outMarket;
     }
 
-    private static OutSelection getOneXTwoOutSelection(InSelection inSelection, String selectionName, String marketUid) {
+    private static OutSelection getOneXTwoOutSelection(InSelection inSelection,
+                                                       String selectionName,
+                                                       String marketUid) {
         int id = switch (selectionName) {
             case "team a" -> SelectionType.TEAM_A.id;
             case "draw" -> SelectionType.DRAW.id;

@@ -13,14 +13,7 @@ import java.io.File;
 import java.nio.file.Files;
 import java.util.List;
 
-/*
- * Run from CLI:
- *   java -cp target/converter-1.0-SNAPSHOT-shaded.jar converter.ConverterApp <input.json> <output.json> [--pretty]
- *
- * Notes:
- *   - Input is JSON array of InMarket.
- *   - Output is JSON array of OutMarket.
- */
+// Main application class for converting market data from input JSON to output JSON
 public class ConverterApp {
 
     public static void main(String[] args) {
@@ -29,7 +22,7 @@ public class ConverterApp {
         } catch (Exception e) {
             System.err.println("ERROR: " + e.getMessage());
             e.printStackTrace(System.err);
-            System.err.println("\nUsage: converter.App <input.json> <output.json> [--pretty]");
+            System.err.println("\nUsage: converter.ConverterApp <input.json> <output.json> [--pretty]");
             System.exit(1);
         }
     }

@@ -3,6 +3,7 @@ package com.project.converter.model;
 import java.util.List;
 import java.util.Objects;
 
+// This class represents an output market object.
 public class OutMarket {
 
     String marketUid;

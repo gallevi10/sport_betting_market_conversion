@@ -9,6 +9,7 @@ import com.project.converter.util.UidBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
+// This class maps "Both Teams To Score" (BTTS) markets from input to output format
 public class BttsMapper implements MarketMapper {
     @Override
     public OutMarket map(InMarket inMarket) {
@@ -18,7 +19,7 @@ public class BttsMapper implements MarketMapper {
         outMarket.setSpecifiers(Specifiers.empty());
 
         String marketUid = UidBuilder.buildMarketUid(
-            inMarket.getEventId(), MarketType.BTTS.id, ""
+            inMarket.getEventId().trim(), MarketType.BTTS.id, ""
         );
         outMarket.setMarketUid(marketUid);
 

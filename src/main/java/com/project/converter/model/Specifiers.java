@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+// This class represents specifiers as a map of key-value pairs.
 public class Specifiers {
 
     private Map<String, String> specifiers = new LinkedHashMap<>();

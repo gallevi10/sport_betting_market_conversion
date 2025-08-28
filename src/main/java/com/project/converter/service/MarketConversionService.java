@@ -15,6 +15,7 @@ import java.util.List;
 import static com.project.converter.util.Validation.require;
 import static com.project.converter.util.Validation.requireNonNull;
 
+// This service handles conversion of input market data to output market data using the appropriate mappers
 public class MarketConversionService {
 
     // converts single input market to output market
@@ -42,11 +43,12 @@ public class MarketConversionService {
         return outMarkets;
     }
 
+    // validates the input market data
     private static void validateInMarket(InMarket inMarket) {
         requireNonNull(inMarket, "inMarket must not be null");
         require(!TextUtils.isBlank(inMarket.getEventId()), "eventId must not be blank");
-        require(!TextUtils.isBlank(inMarket.getName()), "market name must not be blank");
+        require(!TextUtils.isBlank(inMarket.getName()), "Market name must not be blank");
         require(inMarket.getSelections() != null && !inMarket.getSelections().isEmpty(),
-            "selections must not be null or empty");
+            "Selections must not be null or empty");
     }
 }

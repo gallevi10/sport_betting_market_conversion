@@ -1,5 +1,6 @@
 package com.project.converter.enums;
 
+// This enum represents different types of betting markets
 public enum MarketType {
 
     ONE_X_TWO("1", "1x2"),

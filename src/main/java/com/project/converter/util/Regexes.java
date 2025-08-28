@@ -2,6 +2,7 @@ package com.project.converter.util;
 
 import java.util.regex.Pattern;
 
+// This class contains regex patterns for matching numbers and signed numbers
 public class Regexes {
 
     // regex patterns to match numbers

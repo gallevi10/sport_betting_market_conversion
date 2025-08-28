@@ -8,6 +8,7 @@ import com.project.converter.util.TextUtils;
 
 import java.util.regex.Matcher;
 
+// This class extracts handicap specifiers from market selections.
 public class HandicapSpecifierExtractor implements SpecifierExtractor {
 
     @Override
@@ -16,9 +17,11 @@ public class HandicapSpecifierExtractor implements SpecifierExtractor {
 
         for (InSelection selection : market.getSelections()) {
             String name = TextUtils.nullToEmpty(selection.getName()).toLowerCase();
-            Matcher matcher = Regexes.DECIMAL.matcher(name);
+            Matcher matcher = Regexes.SIGNED_DECIMAL.matcher(name);
             if (matcher.find()) {
-                return Specifiers.of("hcp", matcher.group(1));
+                return Specifiers.of(
+                    "hcp", matcher.group(1).substring(1)
+                ); // return "hcp" -> value without sign
             }
         }
 

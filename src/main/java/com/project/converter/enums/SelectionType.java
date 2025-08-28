@@ -1,5 +1,6 @@
 package com.project.converter.enums;
 
+// This enum represents different types of selection outcomes in betting markets
 public enum SelectionType {
 
     // Market Type 1

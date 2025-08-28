@@ -9,10 +9,12 @@ import com.project.converter.util.UidBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
+// This class maps handicap markets from input to output format
 public class HandicapMapper implements MarketMapper{
 
     private final String marketTypeId;
-    private final HandicapSpecifierExtractor extractor = new HandicapSpecifierExtractor();
+    private final HandicapSpecifierExtractor handicapSpecifierExtractor =
+        new HandicapSpecifierExtractor();
 
     public HandicapMapper(String marketTypeId) {
         this.marketTypeId = marketTypeId;
@@ -20,27 +22,31 @@ public class HandicapMapper implements MarketMapper{
 
     @Override
     public OutMarket map(InMarket inMarket) {
-        Specifiers specifiers = extractor.extract(inMarket);
+        Specifiers specifiers = handicapSpecifierExtractor.extract(inMarket); // extracts specifiers
 
         OutMarket outMarket = new OutMarket();
         outMarket.setMarketTypeId(marketTypeId);
         outMarket.setSpecifiers(specifiers);
 
-        String hcp = specifiers.getSpecifiers().getOrDefault("hcp", "");
-        String marketUid = UidBuilder.buildMarketUid(inMarket.getEventId(), marketTypeId, hcp);
+        String hcpSpecifier = specifiers.getSpecifiers().getOrDefault("hcp", "");
+        String marketUid = UidBuilder.buildMarketUid(
+            inMarket.getEventId().trim(), marketTypeId, hcpSpecifier
+        );
         outMarket.setMarketUid(marketUid);
 
         List<OutSelection> outSelections = new ArrayList<>();
         for (InSelection inSelection : inMarket.getSelections()) {
             String selectionName = TextUtils.toTrimmedAndLowercase(inSelection.getName());
-            OutSelection o = getHandicapOutSelection(inSelection, selectionName, marketUid);
-            outSelections.add(o);
+            OutSelection outSelection = getHandicapOutSelection(inSelection, selectionName, marketUid);
+            outSelections.add(outSelection);
         }
         outMarket.setSelections(outSelections);
         return outMarket;
     }
 
-    private static OutSelection getHandicapOutSelection(InSelection inSelection, String selectionName, String marketUid) {
+    private static OutSelection getHandicapOutSelection(InSelection inSelection,
+                                                        String selectionName,
+                                                        String marketUid) {
         int id;
         if (selectionName.startsWith("team a")) {
             id = SelectionType.HCP_TEAM_A.id;
@@ -50,10 +56,10 @@ public class HandicapMapper implements MarketMapper{
             throw new IllegalArgumentException("Unknown handicap selection name: " + selectionName);
         }
 
-        OutSelection o = new OutSelection();
-        o.setSelectionTypeId(id);
-        o.setDecimalOdds(Double.parseDouble(inSelection.getOdds()));
-        o.setSelectionUid(UidBuilder.buildSelectionUid(marketUid, id));
-        return o;
+        OutSelection outSelection = new OutSelection();
+        outSelection.setSelectionTypeId(id);
+        outSelection.setDecimalOdds(Double.parseDouble(inSelection.getOdds()));
+        outSelection.setSelectionUid(UidBuilder.buildSelectionUid(marketUid, id));
+        return outSelection;
     }
 }

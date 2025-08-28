@@ -2,6 +2,7 @@ package com.project.converter.model;
 
 import java.util.Objects;
 
+// This class represents an input selection object.
 public class InSelection {
 
     String name;

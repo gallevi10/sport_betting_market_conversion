@@ -9,10 +9,11 @@ import com.project.converter.util.UidBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
+// This class maps total markets from input to output format
 public class TotalMapper implements MarketMapper {
 
     private final String marketTypeId;
-    private final TotalSpecifierExtractor extractor = new TotalSpecifierExtractor();
+    private final TotalSpecifierExtractor totalSpecifierExtractor = new TotalSpecifierExtractor();
 
     public TotalMapper(String marketTypeId) {
         this.marketTypeId = marketTypeId;
@@ -20,14 +21,14 @@ public class TotalMapper implements MarketMapper {
 
     @Override
     public OutMarket map(InMarket inMarket) {
-        Specifiers specifiers = extractor.extract(inMarket);
+        Specifiers specifiers = totalSpecifierExtractor.extract(inMarket);
 
         OutMarket outMarket = new OutMarket();
         outMarket.setMarketTypeId(marketTypeId);
         outMarket.setSpecifiers(specifiers);
 
-        String total = specifiers.getSpecifiers().getOrDefault("total", "");
-        String marketUid = UidBuilder.buildMarketUid(inMarket.getEventId(), marketTypeId, total);
+        String totalSpecifier = specifiers.getSpecifiers().getOrDefault("total", "");
+        String marketUid = UidBuilder.buildMarketUid(inMarket.getEventId().trim(), marketTypeId, totalSpecifier);
         outMarket.setMarketUid(marketUid);
 
         List<OutSelection> outSelections = new ArrayList<>();

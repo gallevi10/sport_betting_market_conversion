@@ -1,5 +1,6 @@
 package com.project.converter.util;
 
+// This class provides validation utilities
 public class Validation {
 
     public static void require(boolean condition, String message) {

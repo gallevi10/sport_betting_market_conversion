@@ -2,6 +2,7 @@ package com.project.converter.model;
 
 import java.util.Objects;
 
+// This class represents an output selection object.
 public class OutSelection {
 
     String selectionUid;

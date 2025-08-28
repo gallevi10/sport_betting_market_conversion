@@ -3,6 +3,7 @@ package com.project.converter.model;
 import java.util.List;
 import java.util.Objects;
 
+// This class represents an input market object.
 public class InMarket {
 
     String name;
