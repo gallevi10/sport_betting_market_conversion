@@ -9,17 +9,20 @@ public class OutMarket {
 
     String marketTypeId;
 
-    List<Specifiers> specifiers;
+    Specifiers specifiers;
 
     List<OutSelection> selections;
 
     public OutMarket(String marketUid, String marketTypeId,
-                     List<Specifiers> specifiers,
+                     Specifiers specifiers,
                      List<OutSelection> selections) {
         this.marketUid = marketUid;
         this.marketTypeId = marketTypeId;
         this.specifiers = specifiers;
         this.selections = selections;
+    }
+
+    public OutMarket() {
     }
 
     public String getMarketUid() {
@@ -38,11 +41,11 @@ public class OutMarket {
         this.marketTypeId = marketTypeId;
     }
 
-    public List<Specifiers> getSpecifiers() {
+    public Specifiers getSpecifiers() {
         return specifiers;
     }
 
-    public void setSpecifiers(List<Specifiers> specifiers) {
+    public void setSpecifiers(Specifiers specifiers) {
         this.specifiers = specifiers;
     }
 
@@ -53,6 +56,8 @@ public class OutMarket {
     public void setSelections(List<OutSelection> selections) {
         this.selections = selections;
     }
+
+
 
     @Override
     public boolean equals(Object o) {

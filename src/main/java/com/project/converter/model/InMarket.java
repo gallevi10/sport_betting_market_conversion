@@ -11,6 +11,9 @@ public class InMarket {
 
     List<InSelection> selections;
 
+    public InMarket() {
+    }
+
     public InMarket(String name, String eventId, List<InSelection> selections) {
         this.name = name;
         this.eventId = eventId;
@@ -39,6 +42,15 @@ public class InMarket {
 
     public void setSelections(List<InSelection> selections) {
         this.selections = selections;
+    }
+
+    @Override
+    public String toString() {
+        return "InMarket{" +
+            "name='" + name + '\'' +
+            ", eventId='" + eventId + '\'' +
+            ", selections=" + selections +
+            '}';
     }
 
     @Override

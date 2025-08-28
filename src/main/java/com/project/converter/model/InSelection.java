@@ -8,6 +8,9 @@ public class InSelection {
 
     String odds;
 
+    public InSelection() {
+    }
+
     public InSelection(String name, String odds) {
         this.name = name;
         this.odds = odds;
@@ -27,6 +30,14 @@ public class InSelection {
 
     public void setOdds(String odds) {
         this.odds = odds;
+    }
+
+    @Override
+    public String toString() {
+        return "InSelection{" +
+            "name='" + name + '\'' +
+            ", odds='" + odds + '\'' +
+            '}';
     }
 
     @Override

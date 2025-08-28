@@ -10,6 +10,9 @@ public class OutSelection {
 
     double decimalOdds;
 
+    public OutSelection() {
+    }
+
     public OutSelection(String selectionUid, int selectionTypeId, double decimalOdds) {
         this.selectionUid = selectionUid;
         this.selectionTypeId = selectionTypeId;
